@@ -65,6 +65,18 @@ the path has processed since last time.
 
 2. There will be some latency between the simulator running and the path planner returning a path, with optimized code usually its not very long maybe just 1-3 time steps. During this delay the simulator will continue using points that it was last given, because of this its a good idea to store the last points you have used so you can have a smooth transition. previous_path_x, and previous_path_y can be helpful for this transition since they show the last points given to the simulator controller with the processed points already removed. You would either return a path that extends this previous path or make sure to create a new path that has a smooth transition with this last path.
 
+
+## Approach
+Vehicle does lane change in a way to going to middle lane in when there is no vehicle in middle lane. This way vehicle overtakes in either side. If vehicle is in edge lanes it can only go to middle lane. 
+Sensor fusion outputs are saved in "sensor_fusion" variable.
+Assumption for overtake is about 2 secconds, using this the middile lane is prioritized first for lane change. The distance values for front and rear vehicles on lane change assumptions are same as in lectures.
+
+Speed accileration and deccileration are same as 0.224 mph as per the course lecture and when no vehicle is in front our car gets upto max speed of 49.5 mph and if needed it will slow down to over take or avoid collision by reducing the speed with deccileration of 0.224 mph.
+
+We use spline library for trajectory calculation. In every iteration 3 waypoints on distance of 30m apart are calculated in and are saved.
+
+The code runs without any error for overtaking when required and vehicle finishes a lap in about 5 minutes.
+
 ## Tips
 
 A really helpful resource for doing this project and creating smooth trajectories was using http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
