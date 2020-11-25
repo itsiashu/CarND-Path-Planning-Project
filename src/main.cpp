@@ -146,10 +146,10 @@ int main() {
             // more previous (x, y) points to refer 
             ref_x = previous_path_x[prev_size - 1];
             ref_y = previous_path_y[prev_size - 1];
-            // get a previous point to this too to get the tangent angle
+            // fetch second previous point 
             double ref_x_prev = previous_path_x[prev_size - 2];
             double ref_y_prev = previous_path_y[prev_size - 2];
-            // calculate what angle the car was moving in
+            // calc heading angle
             ref_yaw = atan2(ref_y - ref_y_prev, ref_x - ref_x_prev );
             points_x.push_back(ref_x_prev);
             points_x.push_back(ref_x);
