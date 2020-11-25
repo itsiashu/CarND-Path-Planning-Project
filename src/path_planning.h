@@ -10,7 +10,7 @@
 bool verify_speed_reduction(const vector<vector<double>> &sensor_fusion, int cur_lane, double end_path_s, double car_s) {
   bool speed_reduction = false;
   for(int i=0; i< sensor_fusion.size(); i++) {
-    // check for the cars present in our lane
+    // if cars present in our lane
     if((sensor_fusion[i][6] > (2+4*cur_lane)-2) && (sensor_fusion[i][6] < (2+4*cur_lane)+2)) {
       // reduce speed, if car infront is at less then 30 m
       if(sensor_fusion[i][5] < (30 + end_path_s) && (sensor_fusion[i][5] > car_s)) {
@@ -29,10 +29,10 @@ bool check_left_lane(const vector<vector<double>> &sensor_fusion, int cur_lane, 
   
   if (cur_lane > 0) {
     cur_lane--;
-    // check if you can change the lane
+    // check for lane change
     for (index = 0; index < sf_size; index++) {
       if ((sensor_fusion[index][6] > (2 + 4 * cur_lane) - 2) && (sensor_fusion[index][6] < (2 + 4 * cur_lane) + 2)) {
-        // check car 30 mts out front and 10 mts behind
+        // if front car is 25m ahead and rear car is 5m behind
         if (sensor_fusion[index][5] < (25 + car_s) && (sensor_fusion[index][5] > (car_s - 5))) {
           break;
         }
@@ -53,10 +53,10 @@ bool check_right_lane(const vector<vector<double>> &sensor_fusion, int cur_lane,
   
   if (cur_lane < 2 && !left_ok) {
     cur_lane++;
-    // check if you can change the lane
+    // check for lane change
     for (index = 0; index < sf_size; index++) {
       if ((sensor_fusion[index][6] > (2 + 4 * cur_lane) - 2) && (sensor_fusion[index][6] < (2 + 4 * cur_lane) + 2)) {
-        // check car 30 mts out front and 10 mts behind
+        // if front car is 25m ahead and rear car is 5m behind
         if (sensor_fusion[index][5] < (25 + car_s) && (sensor_fusion[index][5] > (car_s - 5))) {
           break;
         }
