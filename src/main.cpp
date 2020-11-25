@@ -106,8 +106,8 @@ int main() {
           if(!ref_vel)
             end_path_s = car_s;
         
-          bool reduce_speed = verify_speed_reduction(sensor_fusion, cur_lane, end_path_s, car_s);
-          if (reduce_speed)
+          bool speed_reduction = verify_speed_reduction(sensor_fusion, cur_lane, end_path_s, car_s);
+          if (speed_reduction)
             ref_vel -= 0.224;
           // keep 49.5 as max
           else if (ref_vel < 49.5) 
@@ -115,7 +115,7 @@ int main() {
 
           int ref_lane = cur_lane;
           // If reduced speed, check cars in other lanes
-          if (reduce_speed) {
+          if (speed_reduction) {
             left_ok = check_left_lane(sensor_fusion, ref_lane, car_s);
             right_ok = check_right_lane(sensor_fusion, ref_lane, car_s, left_ok);
           }
