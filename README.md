@@ -79,10 +79,15 @@ The code runs without any error for overtaking when required and vehicle finishe
 
 Attached are some screenshots for our car:
 
+Lane Change after 1 min:
 ![Lane Change](images/lane_change.png)
+After 2 min:
 ![After 2 mins](images/2_mins.png)
+After 3 min:
 ![After 3 mins](images/3_mins.png)
+After 6 min:
 ![After 6 mins](images/6_mins.png)
+After 10 min:
 ![After 10 mins](images/10_mins.png)
 
 
